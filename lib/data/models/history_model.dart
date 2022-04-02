@@ -8,8 +8,8 @@ class HistoryModel extends Equatable {
   const HistoryModel({required this.balance, required this.confirmedDate});
 
   factory HistoryModel.fromJson(Map<String, dynamic> json) => HistoryModel(
-        balance: json['balance'],
-        confirmedDate: json['confirmed_date'],
+        balance: json['ref_balance'],
+        confirmedDate: json['confirmed'],
       );
 
   History toEntity() => History(
