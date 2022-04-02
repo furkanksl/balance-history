@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 
 import 'package:balance_history/data/failure.dart';
-import 'package:balance_history/data/services/api/api_serrvice.dart';
+import 'package:balance_history/data/services/api/api_service.dart';
 import 'package:balance_history/domain/entities/history.dart';
 import 'package:balance_history/domain/repositories/history_repository.dart';
 

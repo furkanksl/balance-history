@@ -9,7 +9,7 @@ abstract class ApiService {
   Future<List<History>> getAllBalanceHistory(String? address);
 }
 
-class ApiServiceImp implements ApiService {
+class ApiServiceImpl implements ApiService {
   var dio = Dio();
 
   @override
