@@ -1,6 +1,10 @@
+import 'package:balance_history/presentation/bloc/history_bloc/history_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'injection.dart' as injector;
 
 void main() {
+  injector.init();
   runApp(const MyApp());
 }
 
@@ -10,12 +14,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return MultiBlocProvider(
+      providers: [BlocProvider(create: (_) => injector.locator<HistoryBloc>())],
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const Scaffold(),
       ),
-      home: const Scaffold(),
     );
   }
 }
