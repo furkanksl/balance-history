@@ -12,6 +12,13 @@ class HistoryModel extends Equatable {
         confirmedDate: json['confirmed'],
       );
 
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['ref_balance'] = balance;
+    data['confirmed'] = confirmedDate;
+    return data;
+  }
+
   History toEntity() => History(
         balance: balance,
         confirmedDate: confirmedDate,
