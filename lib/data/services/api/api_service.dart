@@ -6,14 +6,14 @@ import '../../../domain/entities/history.dart';
 import '../../exception.dart';
 
 abstract class ApiService {
-  Future<List<History>> getAllBalanceHistory(String? address);
+  Future<List<History>> getAllBalanceHistory({String? address});
 }
 
 class ApiServiceImpl implements ApiService {
   var dio = Dio();
 
   @override
-  Future<List<History>> getAllBalanceHistory(String? address) async {
+  Future<List<History>> getAllBalanceHistory({String? address}) async {
     var response = await dio.get(
       Urls.getHistoryByAddress(
         address ?? Urls.defaultAddress,

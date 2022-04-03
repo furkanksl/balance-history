@@ -50,7 +50,7 @@ class MockApiService extends _i1.Mock implements _i7.ApiService {
   }
 
   @override
-  _i4.Future<List<_i6.History>> getAllBalanceHistory(String? address) =>
+  _i4.Future<List<_i6.History>> getAllBalanceHistory({String? address}) =>
       (super.noSuchMethod(Invocation.method(#getAllBalanceHistory, [address]),
               returnValue: Future<List<_i6.History>>.value(<_i6.History>[]))
           as _i4.Future<List<_i6.History>>);

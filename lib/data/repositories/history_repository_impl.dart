@@ -20,7 +20,7 @@ class HistoryRepositoryImpl implements HistoryRepository {
   Future<Either<Failure, List<History>>> getAllBalanceHistory(
       String address) async {
     try {
-      final result = await apiService.getAllBalanceHistory(address);
+      final result = await apiService.getAllBalanceHistory(address: address);
       return Right(result);
     } on ServerException {
       return const Left(ServerFailure(''));

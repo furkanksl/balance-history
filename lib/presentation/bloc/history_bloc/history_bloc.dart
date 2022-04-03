@@ -10,11 +10,11 @@ class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
   HistoryBloc(this._getAllHistory) : super(BalanceHistoryEmpty()) {
     on<OnAddressChanged>(
       (event, emit) async {
-        final cityName = event.address;
+        final address = event.address;
 
         emit(BalanceHistoryLoading());
 
-        final result = await _getAllHistory.execute(cityName);
+        final result = await _getAllHistory.execute(address);
         result.fold(
           (failure) {
             emit(BalanceHistoryError(failure.message));

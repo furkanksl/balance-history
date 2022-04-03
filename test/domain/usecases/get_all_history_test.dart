@@ -17,7 +17,7 @@ void main() {
     usecase = GetAllHistory(mockHistoryRepository);
   });
 
-  const tHistoryModel = History(
+  History tHistory = History(
     balance: 213123,
     confirmedDate: "2022-03-21T21:25:37Z",
   );
@@ -29,13 +29,13 @@ void main() {
     () async {
       // arrange
       when(mockHistoryRepository.getAllBalanceHistory(tAddress))
-          .thenAnswer((_) async => const Right([tHistoryModel]));
+          .thenAnswer((_) async => Right([tHistory]));
 
       // act
       final result = await usecase.execute(tAddress);
 
       // assert
-      expect(result, equals(const Right([tHistoryModel])));
+      expect(result, equals(Right([tHistory])));
     },
   );
 }

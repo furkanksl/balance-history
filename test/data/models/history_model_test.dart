@@ -7,14 +7,16 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../helper/json_reader.dart';
 
 void main() {
-  const tHistoryModel = HistoryModel(
+  HistoryModel tHistoryModel = HistoryModel(
     balance: 213123,
     confirmedDate: "2022-03-21T21:25:37Z",
+    dateTime: DateTime.now(),
   );
 
-  const tHistory = History(
+  History tHistory = History(
     balance: 213123,
     confirmedDate: "2022-03-21T21:25:37Z",
+    dateTime: DateTime.now(),
   );
 
   group('to entity', () {

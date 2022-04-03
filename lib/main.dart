@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'injection.dart' as injector;
 
-void main() {
+void main() async {
   injector.init();
   runApp(const MyApp());
 }

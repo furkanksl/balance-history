@@ -18,14 +18,16 @@ void main() {
 
   List<History> tBalanceHistoryList = [];
 
-  const tHistoryModel = HistoryModel(
+  HistoryModel tHistoryModel = HistoryModel(
     balance: 213123,
     confirmedDate: "2022-03-21T21:25:37Z",
+    dateTime: DateTime.now(),
   );
 
-  const tHistory = History(
+  History tHistory = History(
     balance: 213123,
     confirmedDate: "2022-03-21T21:25:37Z",
+    dateTime: DateTime.now(),
   );
 
   setUp(() {
@@ -42,7 +44,7 @@ void main() {
       'should return user balance history when a call to api service is successful',
       () async {
         // arrange
-        when(mockApiService.getAllBalanceHistory(tAddress))
+        when(mockApiService.getAllBalanceHistory(address: tAddress))
             .thenAnswer((_) async => tBalanceHistoryList);
 
         // act
@@ -50,7 +52,7 @@ void main() {
         tBalanceHistoryList.add(tHistory);
 
         // assert
-        verify(mockApiService.getAllBalanceHistory(tAddress));
+        verify(mockApiService.getAllBalanceHistory(address: tAddress));
         expect(
           result,
           equals(
@@ -64,14 +66,14 @@ void main() {
       'should return server failure when a call to api service is unsuccessful',
       () async {
         // arrange
-        when(mockApiService.getAllBalanceHistory(tAddress))
+        when(mockApiService.getAllBalanceHistory(address: tAddress))
             .thenThrow(ServerException());
 
         // act
         final result = await repository.getAllBalanceHistory(tAddress);
 
         // assert
-        verify(mockApiService.getAllBalanceHistory(tAddress));
+        verify(mockApiService.getAllBalanceHistory(address: tAddress));
         expect(
           result,
           equals(
@@ -85,7 +87,7 @@ void main() {
       'should return connection failure when the device has no internet',
       () async {
         // arrange
-        when(mockApiService.getAllBalanceHistory(tAddress)).thenThrow(
+        when(mockApiService.getAllBalanceHistory(address: tAddress)).thenThrow(
           const SocketException('Failed to connect to the network'),
         );
 
@@ -93,7 +95,7 @@ void main() {
         final result = await repository.getAllBalanceHistory(tAddress);
 
         // assert
-        verify(mockApiService.getAllBalanceHistory(tAddress));
+        verify(mockApiService.getAllBalanceHistory(address: tAddress));
         expect(
           result,
           equals(
