@@ -14,26 +14,30 @@ class ApiServiceImpl implements ApiService {
 
   @override
   Future<List<History>> getAllBalanceHistory({String? address}) async {
-    var response = await dio.get(
-      Urls.getHistoryByAddress(
-        address ?? Urls.defaultAddress,
-      ),
-    );
+    try {
+      var response = await dio.get(
+        Urls.getHistoryByAddress(
+          address ?? Urls.defaultAddress,
+        ),
+      );
 
-    if (response.statusCode == 200) {
-      List<History> balanceHistoryList = [];
+      if (response.statusCode == 200) {
+        List<History> balanceHistoryList = [];
 
-      for (var item in response.data['txrefs']) {
-        balanceHistoryList.add(
-          HistoryModel.fromJson(item).toEntity(),
-        );
+        for (var item in response.data['txrefs']) {
+          balanceHistoryList.add(
+            HistoryModel.fromJson(item).toEntity(),
+          );
+        }
+
+        // print(balanceHistoryList.length);
+
+        return balanceHistoryList;
       }
-
-      // print(balanceHistoryList.length);
-
-      return balanceHistoryList;
-    } else {
-      throw ServerException();
+    } on DioError catch (e) {
+      return throw ServerException();
     }
+
+    return [];
   }
 }

@@ -15,6 +15,7 @@ class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
         emit(BalanceHistoryLoading());
 
         final result = await _getAllHistory.execute(address);
+
         result.fold(
           (failure) {
             emit(BalanceHistoryError(failure.message));
@@ -24,7 +25,7 @@ class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
           },
         );
       },
-      transformer: debounce(const Duration(milliseconds: 500)),
+      transformer: debounce(const Duration(milliseconds: 100)),
     );
   }
 
